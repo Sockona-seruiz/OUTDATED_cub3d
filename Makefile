@@ -6,7 +6,7 @@
 #    By: seruiz <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2020/01/07 10:58:35 by seruiz       #+#   ##    ##    #+#        #
-#    Updated: 2020/01/07 14:05:13 by seruiz      ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/07 14:17:00 by seruiz      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -32,9 +32,9 @@ LIBOBJ = minilibx/mlx_init_loop.o			\
 
 OBJ = $(SRC:%.c=%.o)
 
-all : test $(NAME)
+all : libmake $(NAME)
 
-test :
+libmake :
 	$(MAKE) -C minilibx
 
 bonus : $(NAME)
@@ -42,7 +42,7 @@ bonus : $(NAME)
 re : fclean all
 
 libclean :
-	$(MAKE) -C minilibx clean
+	rm -f minilibx/libmlx.a
 
 %.o : %.c $(LIB)
 	$(CC) -c -o $@ $< $(FLAGS)
