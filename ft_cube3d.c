@@ -6,7 +6,7 @@
 /*   By: seruiz <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/07 11:06:19 by seruiz       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 13:08:10 by seruiz      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:05:29 by seruiz      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,6 +45,15 @@ int			key_pressed(int key)
 	return (0);
 }
 
+int			inf_loop(void *mlx_ptr, t_renderer *rdr, void *win)
+{
+	mlx_key_hook(win, key_pressed, NULL);
+	mlx_put_image_to_window(mlx_ptr, win, rdr->img_ptr, 0, 0);
+	mlx_loop_hook(mlx_ptr, inf_loop, NULL);
+	mlx_loop(mlx_ptr);
+	return (0);
+}
+
 int			open_window(char *map)
 {
 	void		*mlx_ptr;
@@ -53,6 +62,15 @@ int			open_window(char *map)
 
 	mlx_ptr = mlx_init();
 	win = mlx_new_window(mlx_ptr, 320, 200, "test");
+	rdr = init_rdr(mlx_ptr, 320, 200);
+	inf_loop(mlx_ptr, rdr, win);
+	/*
+	while (1)
+	{
+		mlx_put_image_to_window(mlx_ptr, win, rdr->img_ptr, 0, 0);
+		mlx_key_hook(win, key_pressed, NULL);
+	}
+	*/
 	return (0);
 }
 /*

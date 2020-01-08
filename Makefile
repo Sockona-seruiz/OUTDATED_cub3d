@@ -6,12 +6,14 @@
 #    By: seruiz <marvin@le-101.fr>                  +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2020/01/07 10:58:35 by seruiz       #+#   ##    ##    #+#        #
-#    Updated: 2020/01/07 14:17:00 by seruiz      ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/07 17:57:57 by seruiz      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-NAME = cube3d.a
+GLOBAL = cube3d.a
+
+NAME = cube3d_old.a
 
 CC = gcc
 
@@ -47,8 +49,9 @@ libclean :
 %.o : %.c $(LIB)
 	$(CC) -c -o $@ $< $(FLAGS)
 
+
 $(NAME) : $(OBJ) $(LIB)
-	ar rcs $(NAME) $(OBJ) minilibx/libmlx.a $(LIB)
+	ar rcs $(NAME) $(OBJ) $(LIB)
 
 clean :
 	rm -f $(OBJ) $(LIBOBJ)
